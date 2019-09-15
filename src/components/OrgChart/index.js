@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Employee from '../Employee'
 import { isEmpty, map } from 'lodash'
+import 'antd/dist/antd.css'
 
 function OrgChart({ tree }) {
   const [collapsed, setCollapsed] = useState(false)
