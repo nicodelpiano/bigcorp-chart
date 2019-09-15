@@ -1,6 +1,7 @@
 import React from 'react'
 import Chart from './utils/chart'
 import OrgChart from './components/OrgChart'
+import { MapInteractionCSS } from 'react-map-interaction'
 
 const data = [
   {
@@ -177,7 +178,11 @@ class BigCorpChartApp extends React.Component {
   }
 
   render() {
-    return <OrgChart tree={this.state.chart.buildTree()} />
+    return (
+      <MapInteractionCSS>
+        <OrgChart tree={this.state.chart.buildTree()} />
+      </MapInteractionCSS>
+    )
   }
 }
 

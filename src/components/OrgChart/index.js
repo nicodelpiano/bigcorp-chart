@@ -15,6 +15,7 @@ function OrgChart({ tree }) {
           marginLeft: 10,
           marginRight: 10,
           marginTop: 10,
+          height: '100vh'
         }}
       >
         <EmployeeCard
