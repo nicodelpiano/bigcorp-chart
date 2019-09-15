@@ -13,7 +13,7 @@ function OrgChart({ tree }) {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          border: '3px solid blue'
+          margin: 10,
         }}
       >
         <Employee
@@ -27,10 +27,9 @@ function OrgChart({ tree }) {
             style={{
               display: !collapsed ? 'flex' : 'none',
               justifyContent: 'space-between',
-              padding: 10,
+              margin: 10,
               alignItems: 'flex-start',
               flexDirection: 'row',
-              border: '3px solid red'
             }}
           >
             {map(tree.children, (child, index) => (

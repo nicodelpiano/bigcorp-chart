@@ -18,7 +18,7 @@ function Employee({ employee, displayButton, onClick, collapsed }) {
     <>
       <Card
         size="small"
-        style={{ width: 250, borderRadius: 5, border: '2px solid' }}
+        style={{ height: 120, width: 250, borderRadius: 5, backgroundColor: "#d6e4aa" }}
       >
         <Meta
           avatar={
@@ -36,22 +36,21 @@ function Employee({ employee, displayButton, onClick, collapsed }) {
             justifyContent: 'space-between'
           }}
         >
-          <EmployeeInfoRow name={'ID'} value={id} />
-          <EmployeeInfoRow name={'Department'} value={department} />
-          <EmployeeInfoRow name={'Office'} value={office} />
+          {id && <EmployeeInfoRow name={'ID'} value={id} />}
+          {department && <EmployeeInfoRow name={'Department'} value={department} />}
+          {office && <EmployeeInfoRow name={'Office'} value={office} />}
         </div>
       </Card>
       {displayButton && (
         <div
           style={{
             display: 'flex',
-            border: '1px solid',
             justifyContent: 'center'
           }}
         >
           <Button
             shape="circle"
-            style={{ position: 'relative', top: -18 }}
+            style={{ position: 'relative', top: -18, color: "#76dbd1" }}
             onClick={onClick}
           >
             {collapsed ? (
