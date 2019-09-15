@@ -1,4 +1,4 @@
-import OrgChart from '../utils/orgChart'
+import Chart from '../utils/chart'
 
 const data = [
   {
@@ -35,34 +35,34 @@ const data = [
   }
 ]
 
-describe('orgChart', () => {
+describe('Chart', () => {
   describe('in an empty organization', () => {
-    const emptyOrgChart = new OrgChart()
+    const emptyChart = new Chart()
     test('size should be zero', () => {
-      expect(emptyOrgChart.size()).toEqual(0)
+      expect(emptyChart.size()).toEqual(0)
     })
     test('it should return undefined when searching for an employee', () => {
-      expect(emptyOrgChart.get(0)).toEqual(undefined)
+      expect(emptyChart.get(0)).toEqual(undefined)
     })
-    test('it should build an empty chart', () => {
-      expect(emptyOrgChart.buildChart()).toEqual({})
+    test('it should build an empty chart tree', () => {
+      expect(emptyChart.buildTree()).toEqual({})
     })
   })
 
   describe('.get', () => {
-    const orgChart = new OrgChart()
-    orgChart.insertMultiple(data)
+    const chart = new Chart()
+    chart.insertMultiple(data)
 
     test('it should return an existent employee', () => {
-      expect(orgChart.get(9).id).toEqual(9)
+      expect(chart.get(9).id).toEqual(9)
     })
     test('it should return undefined for a non-existent employee', () => {
-      expect(orgChart.get(99)).toEqual(undefined)
+      expect(chart.get(99)).toEqual(undefined)
     })
   })
 
   describe('.insert', () => {
-    const orgChart = new OrgChart()
+    const chart = new Chart()
 
     test('it should insert new employees correctly', () => {
       const employee = {
@@ -73,8 +73,8 @@ describe('orgChart', () => {
         department: 5,
         office: 2
       }
-      orgChart.insert(employee)
-      expect(orgChart.get(100)).toEqual({ ...employee, children: new Set() })
+      chart.insert(employee)
+      expect(chart.get(100)).toEqual({ ...employee, children: new Set() })
     })
 
     test('it should be idempotent', () => {
@@ -86,10 +86,10 @@ describe('orgChart', () => {
         department: 5,
         office: 2
       }
-      orgChart.insert(employee)
-      const orgChartSizeBefore = orgChart.size()
-      orgChart.insert(employee)
-      expect(orgChart.size()).toEqual(orgChartSizeBefore)
+      chart.insert(employee)
+      const chartSizeBefore = chart.size()
+      chart.insert(employee)
+      expect(chart.size()).toEqual(chartSizeBefore)
     })
 
     test('it should update an already present employee', () => {
@@ -109,8 +109,8 @@ describe('orgChart', () => {
         department: 5,
         office: 3
       }
-      orgChart.insert(employee).insert(employee2)
-      expect(orgChart.get(102).office).toEqual(3)
+      chart.insert(employee).insert(employee2)
+      expect(chart.get(102).office).toEqual(3)
     })
 
     test(`it should update employee's manager correctly`, () => {
@@ -122,8 +122,8 @@ describe('orgChart', () => {
         department: 5,
         office: 2
       }
-      orgChart.insert(manager)
-      const managerChildrenSize = orgChart.get(40).children.size
+      chart.insert(manager)
+      const managerChildrenSize = chart.get(40).children.size
       const employee = {
         first: 'John',
         last: 'Doe',
@@ -132,26 +132,26 @@ describe('orgChart', () => {
         department: 5,
         office: 2
       }
-      orgChart.insert(employee)
-      expect(orgChart.get(40).children.size).toEqual(managerChildrenSize + 1)
+      chart.insert(employee)
+      expect(chart.get(40).children.size).toEqual(managerChildrenSize + 1)
     })
   })
 
   describe('.insertMultiple', () => {
     test('should insert multiple employees correctly', () => {
-      const orgChart = new OrgChart()
-      orgChart.insertMultiple(data)
-      expect(orgChart.size()).toEqual(data.length)
+      const chart = new Chart()
+      chart.insertMultiple(data)
+      expect(chart.size()).toEqual(data.length)
     })
   })
 
-  describe('.buildChart', () => {
-    const orgChart = new OrgChart()
-    orgChart.insertMultiple(data)
-    const chart = orgChart.buildChart()
+  describe('.buildTree', () => {
+    const chart = new Chart()
+    chart.insertMultiple(data)
+    const tree = chart.buildTree()
 
-    test('it should build the chart correctly', () => {
-      expect(chart).toEqual({
+    test('it should build the chart tree correctly', () => {
+      expect(tree).toEqual({
         id: 9,
         data: {
           id: 9,
@@ -198,11 +198,11 @@ describe('orgChart', () => {
       })
     })
 
-    test('it should have the manager as root of the chart', () => {
-      const { department, first, last, id, office, children } = orgChart.get(9)
-      expect(chart.id).toEqual(9)
-      expect(chart.data).toEqual({ department, first, last, id, office })
-      expect(chart.children.length).toEqual(children.size)
+    test('it should have the manager as root of the chart tree', () => {
+      const { department, first, last, id, office, children } = chart.get(9)
+      expect(tree.id).toEqual(9)
+      expect(tree.data).toEqual({ department, first, last, id, office })
+      expect(tree.children.length).toEqual(children.size)
     })
   })
 })

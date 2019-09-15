@@ -1,4 +1,4 @@
-class OrgChart {
+class Chart {
   constructor(rootManagerValue = 0) {
     // Value to look up when inserting employees to set which one
     // is the root manager.
@@ -8,7 +8,7 @@ class OrgChart {
     // The chart for the organization will be a map,
     // where keys are employee ids, and values are their data
     // plus a set with children ids, if any.
-    this._orgChart = new Map()
+    this._chart = new Map()
   }
 
   // Exports the underlying data structure of the tree to a traversable
@@ -45,7 +45,7 @@ class OrgChart {
     const employeeEntry = this.get(id)
 
     // Upsert an employee: data will be overwritten if it already exists.
-    this._orgChart.set(id, {
+    this._chart.set(id, {
       children: new Set(),
       ...employeeEntry,
       ...employee
@@ -56,7 +56,7 @@ class OrgChart {
       const managerEntry = this.get(manager)
       // Recall that we create the managers entry here always: it will be
       // updated when we actually insert the manager's node.
-      this._orgChart.set(manager, {
+      this._chart.set(manager, {
         ...managerEntry,
         children: managerEntry ? managerEntry.children.add(id) : new Set([id])
       })
@@ -75,17 +75,17 @@ class OrgChart {
   }
 
   get(employeeId) {
-    return this._orgChart.get(employeeId)
+    return this._chart.get(employeeId)
   }
 
   size() {
-    return this._orgChart.size
+    return this._chart.size
   }
 
-  // Constructs the traversable hierarchical structure of the chart.
-  buildChart() {
+  // Constructs the traversable hierarchical structure of the chart as a tree.
+  buildTree() {
     return this._getHierarchy()
   }
 }
 
-export default OrgChart
+export default Chart
