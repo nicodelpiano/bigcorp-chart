@@ -12,7 +12,7 @@ class OrgChart {
   }
 
   // Exports the underlying data structure of the tree to a traversable
-  // representation intended for displaying the whole organizational structure
+  // representation intended for displaying the whole organizational structure.
   _getHierarchy(employeeId = this._rootManagerId) {
     if (!employeeId) {
       return {}
@@ -39,6 +39,7 @@ class OrgChart {
     }
   }
 
+  // Inserts a new employee.
   insert(employee) {
     const { id, manager } = employee
     const employeeEntry = this.get(id)
@@ -81,8 +82,8 @@ class OrgChart {
     return this._orgChart.size
   }
 
-  draw() {
-    console.log('Drawing chart...')
+  // Constructs the traversable hierarchical structure of the chart.
+  buildChart() {
     return this._getHierarchy()
   }
 }

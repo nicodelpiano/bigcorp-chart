@@ -44,8 +44,8 @@ describe('orgChart', () => {
     test('it should return undefined when searching for an employee', () => {
       expect(emptyOrgChart.get(0)).toEqual(undefined)
     })
-    test('it should draw an empty chart', () => {
-      expect(emptyOrgChart.draw()).toEqual({})
+    test('it should build an empty chart', () => {
+      expect(emptyOrgChart.buildChart()).toEqual({})
     })
   })
 
@@ -145,13 +145,13 @@ describe('orgChart', () => {
     })
   })
 
-  describe('.draw', () => {
+  describe('.buildChart', () => {
     const orgChart = new OrgChart()
     orgChart.insertMultiple(data)
-    const chart = orgChart.draw()
+    const chart = orgChart.buildChart()
     console.log(chart)
 
-    test('it should draw the chart correctly', () => {
+    test('it should build the chart correctly', () => {
       expect(chart).toEqual({
         id: 9,
         data: {
