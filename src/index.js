@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import BigCorpChartApp from './BigCorpChartApp'
+import 'antd/dist/antd.css'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(<BigCorpChartApp />, document.getElementById('root'))

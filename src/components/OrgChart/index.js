@@ -1,23 +1,13 @@
 import React, { useState } from 'react'
 import EmployeeCard from '../EmployeeCard'
 import { isEmpty, map } from 'lodash'
-import 'antd/dist/antd.css'
+import './styles.css'
 
 function OrgChart({ tree }) {
   const [collapsed, setCollapsed] = useState(true)
   return (
     !isEmpty(tree) && (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          flexDirection: 'column',
-          marginLeft: 10,
-          marginRight: 10,
-          marginTop: 10,
-          height: '100vh'
-        }}
-      >
+      <div className="container">
         <EmployeeCard
           employee={tree.data}
           onClick={() => setCollapsed(!collapsed)}
@@ -27,11 +17,9 @@ function OrgChart({ tree }) {
         {!isEmpty(tree.children) && (
           <div
             style={{
-              display: !collapsed ? 'flex' : 'none',
-              alignItems: 'flex-start',
-              flexDirection: 'row',
-              borderTop: '2px solid #2c003e'
+              display: !collapsed ? 'flex' : 'none'
             }}
+            className="children"
           >
             {map(tree.children, (child, index) => (
               <OrgChart tree={child} key={index} />

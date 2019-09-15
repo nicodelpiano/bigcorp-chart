@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  height: '100vh';
+}
+
+.children {
+  align-items: flex-start;
+  flex-direction: row;
+  border-top: 2px solid #2c003e;
+}

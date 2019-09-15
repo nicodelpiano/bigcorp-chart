@@ -1,5 +1,6 @@
 import React from 'react'
 import { Avatar, Button, Card, Divider, Icon, Typography } from 'antd'
+import './styles.css'
 
 const { Meta } = Card
 const { Text } = Typography
@@ -16,7 +17,7 @@ function CollapseButton({ onClick, collapsed }) {
   return (
     <Button
       shape="circle"
-      style={{position: 'relative', top: -10, color: '#76dbd1' }}
+      style={{ position: 'relative', top: -10, color: '#76dbd1' }}
       onClick={onClick}
     >
       {collapsed ? (
@@ -31,16 +32,11 @@ function CollapseButton({ onClick, collapsed }) {
 function EmployeeCard({ employee, displayButton, onClick, collapsed }) {
   const { id, first, last, office, department } = employee
   return (
-    <div style={{ display: 'flex', justifyContent:  'center', flexDirection: 'column', alignItems: 'center'}}>
+    <div className="container">
       <Card
         size="small"
-        style={{
-          height: 120,
-          width: 250,
-          borderRadius: 5,
-          backgroundColor: '#d6e4aa',
-          position: 'relative',
-        }}
+        className="card"
+        style={{ backgroundColor: '#d6e4aa' }}
       >
         <Meta
           avatar={
@@ -51,13 +47,7 @@ function EmployeeCard({ employee, displayButton, onClick, collapsed }) {
           }
           title={`${first} ${last}`}
         />
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-          }}
-        >
+        <div className="content">
           {id && <EmployeeInfoRow name={'ID'} value={id} />}
           {department && (
             <EmployeeInfoRow name={'Department'} value={department} />
@@ -69,7 +59,10 @@ function EmployeeCard({ employee, displayButton, onClick, collapsed }) {
         <CollapseButton collapsed={collapsed} onClick={onClick} />
       )}
       {!collapsed && (
-        <Divider style={{ height: 40, width: 2, backgroundColor: "#2c003e" }} type="vertical" />
+        <Divider
+          style={{ height: 40, width: 2, backgroundColor: '#2c003e' }}
+          type="vertical"
+        />
       )}
     </div>
   )
