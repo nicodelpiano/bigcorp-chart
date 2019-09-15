@@ -1,32 +1,45 @@
 import React from 'react'
-import { Avatar, Badge, Button, Card } from 'antd'
+import { Avatar, Button, Card, Icon, Typography } from 'antd'
+
+const { Meta } = Card
+const { Text } = Typography
+
+function EmployeeInfoRow({ name, value }) {
+  return (
+    <p style={{ margin: 1 }}>
+      <Text strong>{name}:</Text> {value}
+    </p>
+  )
+}
 
 function Employee({ employee, displayButton, onClick, collapsed }) {
   const { id, first, last, office, department } = employee
-  console.log(id)
   return (
     <>
       <Card
         size="small"
         style={{ width: 250, borderRadius: 5, border: '2px solid' }}
-        title={`${first} ${last}`}
       >
+        <Meta
+          avatar={
+            <Avatar
+              shape="square"
+              src={`https://api.adorable.io/avatars/60/${id}`}
+            />
+          }
+          title={`${first} ${last}`}
+        />
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            border: '1px solid',
-            alignItems: 'center'
+            flexDirection: 'column',
+            justifyContent: 'space-between'
           }}
         >
-          <Badge count={id}>
-            <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
-              U
-            </Avatar>
-          </Badge>
+          <EmployeeInfoRow name={'ID'} value={id} />
+          <EmployeeInfoRow name={'Department'} value={department} />
+          <EmployeeInfoRow name={'Office'} value={office} />
         </div>
-        <p>{`Department: ${department}`}</p>
-        <p>{`Office: ${office}`}</p>
       </Card>
       {displayButton && (
         <div
@@ -37,12 +50,15 @@ function Employee({ employee, displayButton, onClick, collapsed }) {
           }}
         >
           <Button
-            type="dashed"
             shape="circle"
             style={{ position: 'relative', top: -18 }}
             onClick={onClick}
           >
-            {collapsed ? '+' : '-'}
+            {collapsed ? (
+              <Icon type="plus-circle" theme="filled" />
+            ) : (
+              <Icon type="minus-circle" theme="filled" />
+            )}
           </Button>
         </div>
       )}

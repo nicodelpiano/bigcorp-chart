@@ -9,7 +9,7 @@ const data = [
     id: 1,
     manager: 16,
     department: 5,
-    office: 2,
+    office: 2
   },
   {
     first: 'Daniel',
@@ -17,7 +17,7 @@ const data = [
     id: 2,
     manager: 9,
     department: 5,
-    office: 2,
+    office: 2
   },
   {
     first: 'Thomas',
@@ -25,7 +25,7 @@ const data = [
     id: 3,
     manager: 9,
     department: 4,
-    office: null,
+    office: null
   },
   {
     first: 'Ruth',
@@ -33,7 +33,7 @@ const data = [
     id: 4,
     manager: 9,
     department: 6,
-    office: 2,
+    office: 2
   },
   {
     first: 'Jerry',
@@ -41,7 +41,7 @@ const data = [
     id: 5,
     manager: 2,
     department: 7,
-    office: 5,
+    office: 5
   },
   {
     first: 'Daniel',
@@ -49,7 +49,7 @@ const data = [
     id: 6,
     manager: 2,
     department: 4,
-    office: 1,
+    office: 1
   },
   {
     first: 'Raymond',
@@ -57,7 +57,7 @@ const data = [
     id: 7,
     manager: 2,
     department: 5,
-    office: 3,
+    office: 3
   },
   {
     first: 'Dorothy',
@@ -65,7 +65,7 @@ const data = [
     id: 8,
     manager: 6,
     department: null,
-    office: 5,
+    office: 5
   },
   {
     first: 'Stephen',
@@ -73,7 +73,7 @@ const data = [
     id: 9,
     manager: 0,
     department: 2,
-    office: 1,
+    office: 1
   },
   {
     first: 'Stephen',
@@ -81,7 +81,7 @@ const data = [
     id: 10,
     manager: 3,
     department: 6,
-    office: 4,
+    office: 4
   },
   {
     first: 'Arthur',
@@ -89,7 +89,7 @@ const data = [
     id: 11,
     manager: 10,
     department: 10,
-    office: 4,
+    office: 4
   },
   {
     first: 'Lisa',
@@ -97,7 +97,7 @@ const data = [
     id: 12,
     manager: 10,
     department: 6,
-    office: 3,
+    office: 3
   },
   {
     first: 'George',
@@ -105,7 +105,7 @@ const data = [
     id: 13,
     manager: 10,
     department: 7,
-    office: 5,
+    office: 5
   },
   {
     first: 'Matthew',
@@ -113,7 +113,7 @@ const data = [
     id: 14,
     manager: 4,
     department: 4,
-    office: 1,
+    office: 1
   },
   {
     first: 'Thomas',
@@ -121,7 +121,7 @@ const data = [
     id: 15,
     manager: 4,
     department: 9,
-    office: 1,
+    office: 1
   },
   {
     first: 'Frank',
@@ -129,7 +129,7 @@ const data = [
     id: 16,
     manager: 4,
     department: 7,
-    office: 5,
+    office: 5
   },
   {
     first: 'Anthony',
@@ -137,7 +137,7 @@ const data = [
     id: 17,
     manager: 4,
     department: 8,
-    office: 4,
+    office: 4
   },
   {
     first: 'Virginia',
@@ -145,7 +145,7 @@ const data = [
     id: 18,
     manager: 14,
     department: 1,
-    office: 2,
+    office: 2
   },
   {
     first: 'Cynthia',
@@ -153,7 +153,7 @@ const data = [
     id: 19,
     manager: 14,
     department: 2,
-    office: 1,
+    office: 1
   },
   {
     first: 'Gregory',
@@ -161,7 +161,7 @@ const data = [
     id: 20,
     manager: 16,
     department: 5,
-    office: 3,
+    office: 3
   }
 ]
 

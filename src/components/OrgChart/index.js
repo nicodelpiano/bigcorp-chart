@@ -4,7 +4,7 @@ import { isEmpty, map } from 'lodash'
 import 'antd/dist/antd.css'
 
 function OrgChart({ tree }) {
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(true)
   return (
     !isEmpty(tree) && (
       <div
