@@ -149,7 +149,6 @@ describe('orgChart', () => {
     const orgChart = new OrgChart()
     orgChart.insertMultiple(data)
     const chart = orgChart.buildChart()
-    console.log(chart)
 
     test('it should build the chart correctly', () => {
       expect(chart).toEqual({
