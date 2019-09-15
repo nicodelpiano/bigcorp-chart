@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Employee from '../Employee'
+import EmployeeCard from '../EmployeeCard'
 import { isEmpty, map } from 'lodash'
 import 'antd/dist/antd.css'
 
@@ -16,7 +16,7 @@ function OrgChart({ tree }) {
           margin: 10,
         }}
       >
-        <Employee
+        <EmployeeCard
           employee={tree.data}
           onClick={() => setCollapsed(!collapsed)}
           collapsed={collapsed}
