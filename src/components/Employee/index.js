@@ -29,32 +29,34 @@ function CollapseButton({ onClick, collapsed }) {
   )
 }
 
-function EmployeeCard({ employee, displayButton, onClick, collapsed }) {
-  const { id, first, last, office, department } = employee
+function EmployeeCard({ employee }) {
+  const { id, first, last, department, office } = employee
+  return (
+    <Card size="small" className="card" style={{ backgroundColor: '#d6e4aa' }}>
+      <Meta
+        avatar={
+          <Avatar
+            shape="square"
+            src={`https://api.adorable.io/avatars/60/${id}`}
+          />
+        }
+        title={`${first} ${last}`}
+      />
+      <div className="content">
+        {id && <EmployeeInfoRow name={'ID'} value={id} />}
+        {department && (
+          <EmployeeInfoRow name={'Department'} value={department} />
+        )}
+        {office && <EmployeeInfoRow name={'Office'} value={office} />}
+      </div>
+    </Card>
+  )
+}
+
+function Employee({ employee, displayButton, onClick, collapsed }) {
   return (
     <div className="container">
-      <Card
-        size="small"
-        className="card"
-        style={{ backgroundColor: '#d6e4aa' }}
-      >
-        <Meta
-          avatar={
-            <Avatar
-              shape="square"
-              src={`https://api.adorable.io/avatars/60/${id}`}
-            />
-          }
-          title={`${first} ${last}`}
-        />
-        <div className="content">
-          {id && <EmployeeInfoRow name={'ID'} value={id} />}
-          {department && (
-            <EmployeeInfoRow name={'Department'} value={department} />
-          )}
-          {office && <EmployeeInfoRow name={'Office'} value={office} />}
-        </div>
-      </Card>
+      <EmployeeCard employee={employee} />
       {displayButton && (
         <CollapseButton collapsed={collapsed} onClick={onClick} />
       )}
@@ -68,4 +70,4 @@ function EmployeeCard({ employee, displayButton, onClick, collapsed }) {
   )
 }
 
-export default EmployeeCard
+export default Employee

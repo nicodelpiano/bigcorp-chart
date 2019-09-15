@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import EmployeeCard from '../EmployeeCard'
+import Employee from '../Employee'
 import { isEmpty, map } from 'lodash'
 import './styles.css'
 
@@ -8,7 +8,7 @@ function OrgChart({ tree }) {
   return (
     !isEmpty(tree) && (
       <div className="container">
-        <EmployeeCard
+        <Employee
           employee={tree.data}
           onClick={() => setCollapsed(!collapsed)}
           collapsed={collapsed}
