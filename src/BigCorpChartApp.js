@@ -180,7 +180,9 @@ class BigCorpChartApp extends React.Component {
   render() {
     return (
       <MapInteractionCSS>
-        <OrgChart tree={this.state.chart.buildTree()} />
+        <div style={{ height: '100vh' }}>
+          <OrgChart tree={this.state.chart.buildTree()} />
+        </div>
       </MapInteractionCSS>
     )
   }
