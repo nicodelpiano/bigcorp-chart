@@ -10,10 +10,11 @@ function OrgChart({ tree }) {
       <div
         style={{
           display: 'flex',
-          justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          margin: 10,
+          marginLeft: 10,
+          marginRight: 10,
+          marginTop: 10,
         }}
       >
         <EmployeeCard
@@ -26,10 +27,9 @@ function OrgChart({ tree }) {
           <div
             style={{
               display: !collapsed ? 'flex' : 'none',
-              justifyContent: 'space-between',
-              margin: 10,
               alignItems: 'flex-start',
               flexDirection: 'row',
+              borderTop: '2px solid #2c003e'
             }}
           >
             {map(tree.children, (child, index) => (
