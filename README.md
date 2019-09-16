@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# BigCorp Chart
 
-## Available Scripts
+Displays an organization structure as a hierarchy tree.
 
-In the project directory, you can run:
+You can see a working [demo here](https://bigcorp-chart.herokuapp.com).
 
-### `npm start`
+## Build & Run
 
-Runs the app in the development mode.<br>
+In the project directory, you can run (use `yarn` if preferred):
+
+    npm install
+
+to install dependencies. Then execute
+
+    npm start
+
+to run the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Test
 
-### `npm test`
+To run tests simply execute
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    npm test
 
-### `npm run build`
+## Analysis
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Currently the underlying data structure (`./utils/chart.js`) to represent the diagram supports displaying a huge amount of nodes (I tested it with more than 100k nodes).
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The `Chart` class uses a `Map` to store employee ids as _keys_, and employees data as _values_, plus the employee's children ids if it manages other people. To store the children ids in each entry I opted for `Set`, as it will guarantee they will be unique, while giving good performance for insertion.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The operations supported are:
 
-### `npm run eject`
+- **insert:** inserts a new employee into the chart. The operation cost in time is `O(1)` (constant), and space is `O(1)` as well, as it only stores one new entry in the hash.
+- **insertMultiple:** inserts a list of employees into the chart. The operation cost in time is `O(n)` (where `n` is the number of employees being inserted), and space is `O(n)`.
+- **get:** retrieves an employees from the chart. The operation cost in time is `O(1)` and space is `O(1)`.
+- **buildTree:** builds the representation of the chart as a tree, that is, an object with arrays as children of objects. The operation cost for building the tree is `O(n)` in time complexity, as we have to traverse the whole hash, and space is also `O(n)` as we need to store all the employees in a new structure.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+|   | Time  |  Space  |
+|---|---|---|
+| get | O(1) | O(1) |
+| insert | O(1) | O(1) |
+| insertMultiple | O(n) | O(n) |
+| buildTree | O(n) | O(n) |
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Caveats
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+For a considerable amount of nodes, let's say, the top manager has 1000 employees under their supervision, it can experienced a noticeable slowdown.
+This is due to rendering, as my solution just shows everything eagerly, not on demand. We can circumvent this using an additional library, like `react-window` or `react-virtualized`, which tackle the problem of rendering only what is needed. I personally tried them for this example, and it could load lazily (on user’s demand, by scrolling) a whole subtree with more than one hundred thousand of nodes instantaneously.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Future Improvements
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Use `react-window` or `react-virtualized` to speed-up rendering when the chart is huge
+- Implement `remove` and `update` operations in `Chart` class
+- Improve styling
