@@ -4,6 +4,8 @@ Displays an organization structure as a hierarchy tree.
 
 You can see a working [demo here](https://bigcorp-chart.herokuapp.com).
 
+Use the mouse scroll to zoom-in and zoom-out and to drag the chart.
+
 ## Build & Run
 
 In the project directory, you can run (use `yarn` if preferred):
