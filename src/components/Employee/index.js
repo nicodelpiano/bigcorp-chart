@@ -17,7 +17,11 @@ function CollapseButton({ onClick, collapsed }) {
   return (
     <Button
       shape="circle"
-      style={{ position: 'relative', top: -10, color: '#76dbd1' }}
+      style={{
+        position: 'relative',
+        top: -10,
+        color: collapsed ? '#76dbd1' : '#ff4d4f'
+      }}
       onClick={onClick}
     >
       {collapsed ? (
@@ -35,13 +39,14 @@ function EmployeeCard({ employee }) {
     <Card
       size="small"
       className="employee-card"
-      style={{ backgroundColor: '#d6e4aa' }}
+      style={{ backgroundColor: '#69c0ff' }}
     >
       <Meta
         avatar={
           <Avatar
             shape="square"
             src={`https://api.adorable.io/avatars/60/${id}`}
+            style={{ border: '1px solid' }}
           />
         }
         title={`${first} ${last}`}
