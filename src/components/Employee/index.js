@@ -32,7 +32,11 @@ function CollapseButton({ onClick, collapsed }) {
 function EmployeeCard({ employee }) {
   const { id, first, last, department, office } = employee
   return (
-    <Card size="small" className="card" style={{ backgroundColor: '#d6e4aa' }}>
+    <Card
+      size="small"
+      className="employee-card"
+      style={{ backgroundColor: '#d6e4aa' }}
+    >
       <Meta
         avatar={
           <Avatar
@@ -42,7 +46,7 @@ function EmployeeCard({ employee }) {
         }
         title={`${first} ${last}`}
       />
-      <div className="content">
+      <div className="employee-content">
         {id && <EmployeeInfoRow name={'ID'} value={id} />}
         {department && (
           <EmployeeInfoRow name={'Department'} value={department} />
@@ -55,7 +59,7 @@ function EmployeeCard({ employee }) {
 
 function Employee({ employee, displayButton, onClick, collapsed }) {
   return (
-    <div className="container">
+    <div className="employee-container">
       <EmployeeCard employee={employee} />
       {displayButton && (
         <CollapseButton collapsed={collapsed} onClick={onClick} />

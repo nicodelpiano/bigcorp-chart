@@ -1,18 +1,18 @@
-.container {
+.employee-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
 
-.card {
+.employee-card {
   height: 120px;
   width: 250px;
   border-radius: 5px;
   position: relative;
 }
 
-.content {
+.employee-content {
   display: flex;
   justify-content: center;
   flex-direction: column;

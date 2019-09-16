@@ -7,7 +7,7 @@ function OrgChart({ tree }) {
   const [collapsed, setCollapsed] = useState(true)
   return (
     !isEmpty(tree) && (
-      <div className="container">
+      <div className="org-chart-container">
         <Employee
           employee={tree.data}
           onClick={() => setCollapsed(!collapsed)}
@@ -19,7 +19,7 @@ function OrgChart({ tree }) {
             style={{
               display: !collapsed ? 'flex' : 'none'
             }}
-            className="children"
+            className="org-chart-children"
           >
             {map(tree.children, (child, index) => (
               <OrgChart tree={child} key={index} />
